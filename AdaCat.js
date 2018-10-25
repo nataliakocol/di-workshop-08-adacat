@@ -5,6 +5,7 @@ class AdaCat {
     this.hunger = 5
     this.isSleeping = false
     this.size = 30
+    this.tiredness = 0
   }
 
   setHunger(newHunger) {
@@ -15,6 +16,15 @@ class AdaCat {
       newHunger = 10
     }
     this.hunger = newHunger
+  }
+
+  setTiredness(variable) {
+    if(variable > 15) {
+      this.tiredness = 15
+    }
+    else {
+      this.tiredness = variable
+    }
   }
 
   getDescription() {
@@ -30,6 +40,7 @@ class AdaCat {
 
       'they weigh ' + this.size + ' tonnes.',
       'their health is ' + this.getHealth() + '/30.',
+      'their tiredness is ' + this.tiredness + '/15',
       sleepLine
     ]
 
@@ -44,10 +55,14 @@ class AdaCat {
     }
 
     this.setHunger(hunger)
+
+    var tired = this.tiredness + 1;
+    this.setTiredness(tired);
   }
 
   nap() {
     this.isSleeping = true
+    this.tiredness = 0;
   }
 
   wakeUp() {
@@ -60,6 +75,9 @@ class AdaCat {
       this.size = this.size - 1
     }
     this.setHunger(hunger)
+
+    var tired = this.tiredness + 1;
+    this.setTiredness(tired);
   }
 
   getHealth() {
@@ -85,6 +103,7 @@ class AdaCat {
 
     return healthScore
   }
+
 }
 
 module.exports = AdaCat
